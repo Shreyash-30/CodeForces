@@ -1,0 +1,60 @@
+Link - https://codeforces.com/problemset/problem/2057/B
+Type - Implementation 
+Intuition - Remove all the values whose sum ==k  plus max value in one move 
+            Remaining value ani single 
+
+CODE - 
+
+
+public class B_Gorilla_and_the_Exam {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();  // Number of test cases
+
+        while (t-- > 0) {
+            solve(sc);
+        }
+        sc.close();
+    }
+
+    static void solve(Scanner sc) {
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int[] a = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+
+        Arrays.sort(a); // Sort array
+
+        List<Integer> cnt = new ArrayList<>();
+        int freq = 1;
+
+        // Count frequency of each unique number
+        for (int i = 1; i < n; i++) {
+            if (a[i] == a[i - 1]) {
+                freq++;
+            } else {
+                cnt.add(freq);
+                freq = 1;
+            }
+        }
+        cnt.add(freq); // Add last frequency count
+
+        // Sort frequency list (smallest first)
+        Collections.sort(cnt);
+
+        int m = cnt.size(); // Number of unique elements
+
+        for (int i = 0; i < m - 1; i++) {
+            if (cnt.get(i) > k) {
+                System.out.println(m - i);
+                return;
+            }
+            k -= cnt.get(i);
+        }
+
+        System.out.println(1);
+    }
+}
