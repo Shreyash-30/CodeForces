@@ -1,0 +1,48 @@
+Link - https://codeforces.com/problemset/problem/2060/C
+Intuition - count the no of pairs 
+
+CODE - 
+public class C_Game_of_Mathletes {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt(); // Number of test cases
+
+        while (T-- > 0) {
+            solve(sc);
+        }
+        sc.close();
+    }
+
+    private static void solve(Scanner sc) {
+        long n = sc.nextLong();
+        long k = sc.nextLong();
+        Map<Long, Long> freq = new HashMap<>();
+
+        // Read input and count frequency
+        for (int i = 0; i < n; i++) {
+            long num = sc.nextLong();
+            if (num < k) { // Ignore numbers >= k
+                freq.put(num, freq.getOrDefault(num, 0L) + 1);
+            }
+        }
+
+        long ans = 0;
+        for (long key : freq.keySet()) {
+            long complement = k - key;
+            if (freq.containsKey(complement)) {
+                if (key == complement) { 
+                    // If both numbers are the same (like k=6, pair (3,3))
+                    ans += freq.get(key) / 2;
+                } else {
+                    long minPairs = Math.min(freq.get(key), freq.get(complement));
+                    ans += minPairs;
+                    // Remove counted pairs to avoid duplicates
+                    freq.put(key, freq.get(key) - minPairs);
+                    freq.put(complement, freq.get(complement) - minPairs);
+                }
+            }
+        }
+        System.out.println(ans);
+    }
+}
+
