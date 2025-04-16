@@ -1,0 +1,43 @@
+Problem Link - https://codeforces.com/problemset/problem/2092/B
+
+Learning from Problem - For operation based question observe the operation to find the pattern and hint 
+                        check what is necessary requirements, conditions for operation to be possible or valid
+                        implement those requirements.
+                        
+
+Code - import java.util.Scanner;
+
+public class B_Lady_Bug {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+
+        while (t-->0) {
+            int n = sc.nextInt();
+            String a = sc.next();
+            String b = sc.next();
+    
+            int cnt1 = 0, cnt2 = 0;
+    
+            for (int i = 0; i < n; ++i) {
+                if (i % 2 == 1) {
+                    if (a.charAt(i) == '0') cnt2++;
+                    if (b.charAt(i) == '0') cnt1++;
+                } else {
+                    if (a.charAt(i) == '0') cnt1++;
+                    if (b.charAt(i) == '0') cnt2++;
+                }
+            }
+    
+            if (cnt1 >= (n + 1) / 2 && cnt2 >= n / 2) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
+            }
+
+        }
+    }
+}
+                        
+            
