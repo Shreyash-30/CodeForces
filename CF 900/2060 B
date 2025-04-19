@@ -1,0 +1,33 @@
+Link - https://codeforces.com/problemset/problem/2060/B
+
+Learning - For problems which involves the operation on digits of number 
+           Take input in string for efficient handling 
+
+
+Code - import java.util.Scanner;
+
+public class B_Expensive_Number {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+
+        while (t-->0) {
+          String s = sc.next();
+           
+            int cnt =0;
+            int zCnt =0;
+            int index = 0;
+        boolean flag = false;
+             for(int i =s.length()-1; i>=0; i-- ){
+                if(s.charAt(i)!='0'){
+                    flag = true;
+                }
+                else if(flag)cnt++;
+             }
+           
+            System.out.println(s.length()-(cnt+1));
+             
+        }
+    }
+}
