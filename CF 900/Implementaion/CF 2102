@@ -1,0 +1,35 @@
+Link - https://codeforces.com/contest/2102/problem/B
+
+Intuition - if the first element is smallest in sorted array before [n/2]+1 then it is possible, else NO
+
+Code - 
+ Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-->0) {
+        int n = sc.nextInt(); // size of array
+            int[] a = new int[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = sc.nextInt();
+            }
+
+            // Create a list of (abs(a[i]), index)
+            List<int[]> pairs = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                pairs.add(new int[]{Math.abs(a[i]), i});
+            }
+
+            // Sort the list by absolute value
+            pairs.sort(Comparator.comparingInt(p -> p[0]));
+
+            int[] ans = new int[n];
+
+            for (int i = 0; i <= n / 2; i++) {
+                int index = pairs.get(i)[1];
+                ans[index] = 1;
+            }
+
+            if (ans[0] == 1) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
+            }  
