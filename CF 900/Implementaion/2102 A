@@ -1,0 +1,21 @@
+Link - https://codeforces.com/contest/2102/problem/A 
+
+Approach - Just check if n%p = 0 && n/p * q !=m then no else always yes 
+Pattern - Understanding mathematics or constructive algorithm
+
+Code - 
+  Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-->0) {
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+            int p = sc.nextInt();
+            int q = sc.nextInt();
+
+            if(n%p ==0 && ((n/p)*q !=m)){
+                System.out.println("NO");
+            }
+            else{
+                System.out.println("YES");
+            }
+        }
