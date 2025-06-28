@@ -1,0 +1,41 @@
+Learning - For greedy focus on key observation that simplifies the brute force 
+Link - https://codeforces.com/problemset/problem/2007/B
+Logic - max element in array will always maximum irresepective of any operaion print that after performing operation on it
+
+code - 
+  import java.util.Scanner;
+
+public class B_Index_and_Maximum_Value {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();  // Number of test cases
+
+        while (T-- > 0) {
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+
+            int maxVal = Integer.MIN_VALUE;
+            for (int i = 0; i < n; i++) {
+                maxVal = Math.max(maxVal, sc.nextInt());
+            }
+
+            StringBuilder output = new StringBuilder();
+            for (int i = 0; i < m; i++) {
+                String c = sc.next();
+                int l = sc.nextInt();
+                int r = sc.nextInt();
+
+                if (l <= maxVal && maxVal <= r) {
+                    maxVal += (c.equals("+") ? 1 : -1);
+                }
+
+                output.append(maxVal);
+                if (i < m - 1) output.append(" ");
+            }
+
+            System.out.println(output);
+        }
+
+        sc.close();
+    }
+}
